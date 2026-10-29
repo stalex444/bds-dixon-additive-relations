@@ -31,9 +31,7 @@ project:
     that a G-invariant subspace W <= V0 with W != bot equals V0. The
     G-action is the permutation representation (g . f) x = f (g^{-1} . x),
     and a subrepresentation is a Submodule together with an explicit
-    invariance hypothesis. Over an algebraically closed K of characteristic
-    0, (1) says that no K-subspace of V0 other than 0 and V0 is G-invariant:
-    absolute irreducibility, stated for K-subspaces of Omega -> K. (2')
+    invariance hypothesis. (2')
     additive_core_of_irreducible, the zero-sum criterion form: for any field
     K, any group G (finite or not) acting on a finite Omega, an injective
     family alpha : Omega -> L into a K-vector space L, K-linear maps phi g
@@ -73,8 +71,7 @@ project:
     functions constant on the blocks of a nontrivial block system form a
     nonzero proper invariant subspace of V0), so the difference is one of
     form only. (4) relModule_le_span_one, the span-one form: the same
-    conclusion under the hypotheses of (2); it is (1) followed by (4'). The
-    all-ones tuple is itself a relation exactly when sum_x alpha x = 0. (5)
+    conclusion under the hypotheses of (2); it is (1) followed by (4'). (5)
     relModule_roots_le_span_one, the span-one form at the roots: under the
     hypotheses of (3), relModule K of the root family (fun r => (r :
     f.SplittingField)) is contained in K . (fun _ => 1); it is (4) at the

@@ -129,7 +129,7 @@ files are not part of the entry and are not listed):
   bac6b9033a8c4e6f307c42f98ec7ef79508adf5fd640824e28c8d437e6a281c4    548  README.md
   c4591fd126c5d82d76a11beced597f51d20488635e64bd3f760516b17b204395    163  Solution.lean
   af5ad4203809c68a6c70ceb81746f31d0606f3e1c2e8b06a41d28b3718566d7b     19  comparator.json
-  622d8ca930ab7bbbd4afc686914d30814f9a3ea93d4ee0fe8024e5e3d0080370    815  formalization.yaml
+  5c18e4c76e8f087b22621d60c029beba01697c400973eecf9326dbbde8b52371    812  formalization.yaml
   f997944e79d5a726003ae61eeb423104b92b19c93b09c11bb96083e75a9116ab     96  lake-manifest.json
   74a200b49dc5f943672dc0731e6f032df65d1d67134681043bb57c1f712922bd     20  lakefile.toml
   8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a      1  lean-toolchain
