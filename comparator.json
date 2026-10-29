@@ -1,0 +1,19 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "DixonRelations.zeroSum_irreducible",
+    "DixonRelations.additive_core_of_irreducible",
+    "DixonRelations.additive_core",
+    "DixonRelations.additive_roots_no_relation",
+    "DixonRelations.relModule_le_span_one_of_irreducible",
+    "DixonRelations.relModule_le_span_one",
+    "DixonRelations.relModule_roots_le_span_one",
+    "DixonRelations.roots_inhomogeneous_iff_const"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ]
+}

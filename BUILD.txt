@@ -1,0 +1,135 @@
+bds-dixon-additive-relations -- kernel build record, 2026-10-29
+(record of the final build of 2026-10-29; eight compared statements)
+Toolchain: leanprover/lean4:v4.35.0-rc2
+Mathlib rev: 065356127b1dc0016f66b7283ce0ce2c4055aa55 (lake-manifest.json; required in git form in lakefile.toml; no lake update)
+Build: lake build (defaultTargets ["BDS", "Challenge", "Solution", "DefinitionAudit"]) -> exit 0
+  build log tail (final record build; the modules whose text changed were recompiled, the others
+  were up to date or replayed from the build cache):
+    Build completed successfully (8943 jobs).
+  sorry warnings: 8, all 'declaration uses sorry' in Challenge.lean (the eight compared statements;
+    the `sorry` tokens are on Challenge.lean lines 371, 390, 409, 426, 446, 460, 476, 494); compared statements: 8
+  sorry / native_decide / axiom / admit / implemented_by / extern / unsafe / opaque / set_option /
+    #eval / run_cmd outside the eight Challenge placeholders: 0
+  Challenge.lean imports: ['Mathlib']; 496 lines, 33937 bytes
+
+  warnings: 28 in total = 8 'declaration uses sorry' + 20 pre-existing deprecation/style lints.
+  Full inventory, by file (line:column):
+    Challenge.lean: 8 'declaration uses sorry' (361:8, 380:8, 399:8, 418:8, 436:8, 451:8, 470:8, 487:8) +
+      6 deprecation (`Set.mem_setOf_eq` -> `Set.mem_ofPred_eq`, inside the shared-definitions block:
+      309:15, 311:29, 313:15, 329:15, 335:15, 337:15)
+    BDS/Defs.lean: 6 deprecation (`Set.mem_setOf_eq` -> `Set.mem_ofPred_eq`; the same shared-definitions
+      block, byte-identical to Challenge.lean's: 30:15, 32:29, 34:15, 50:15, 56:15, 58:15)
+    BDS/TwoTransitiveIrreducible.lean: 6 deprecation (`if_pos` -> `ite_eq_left`, `if_neg` ->
+      `ite_eq_right`: 151:39, 151:51, 161:35, 161:47, 168:41, 168:53) + 2 style
+      (linter.style.haveILetI, `haveI` -> `have`: 81:2, 87:2)
+    BDS.lean, BDS/AdditiveRelations.lean, BDS/RootsCorollaries.lean, BDS/AtomBridge.lean, Solution.lean,
+      DefinitionAudit.lean: no warnings
+  The two deprecations (`Set.mem_setOf_eq`, `if_pos`/`if_neg`) and the `haveI` style lints are Mathlib
+  deprecations/linter suggestions at this pin; the named lemmas and tactics still elaborate, and none
+  is an error. They come from proof text kept from the author's earlier development (the shared
+  definitions' proofs, and the proof of (1), with Q replaced by K). BDS/AdditiveRelations.lean
+  carries no lints: its proofs were rewritten when the statements were generalized to K.
+
+#print axioms (check file outside the package: `import Solution`, `import DefinitionAudit`, then
+#print axioms), for the 8 compared declarations:
+  'DixonRelations.zeroSum_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'DixonRelations.additive_core_of_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'DixonRelations.additive_core' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'DixonRelations.additive_roots_no_relation' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'DixonRelations.relModule_le_span_one_of_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'DixonRelations.relModule_le_span_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'DixonRelations.relModule_roots_le_span_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'DixonRelations.roots_inhomogeneous_iff_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+  (8/8 compared names; 8 lines exactly [propext, Classical.choice, Quot.sound])
+
+for the theorems of the same names in namespace BDS (the proof modules), which Solution.lean applies:
+  'BDS.zeroSum_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'BDS.additive_core_of_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'BDS.additive_core' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'BDS.additive_roots_no_relation' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'BDS.relModule_le_span_one_of_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'BDS.relModule_le_span_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'BDS.relModule_roots_le_span_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'BDS.roots_inhomogeneous_iff_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+for the two further library lemmas behind (6) (BDS/RootsCorollaries.lean; not in comparator.json):
+  'BDS.roots_inhomogeneous_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'BDS.exists_sum_rootSet_eq_algebraMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+for the two uncompared bridge theorems (BDS/AtomBridge.lean; not in comparator.json):
+  'BDS.isAtom_zeroSumSubrep_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'BDS.isAtom_zeroSumSubrep' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+for DefinitionAudit.lean (imports Mathlib only; not compared):
+  'DefinitionAudit.two_pretransitive_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'DefinitionAudit.isPretransitive_of_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'DefinitionAudit.irreducible_separable' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'DefinitionAudit.charZero_cast_ne_zero' depends on axioms: [propext, Quot.sound]
+  'DefinitionAudit.card_rootSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'DefinitionAudit.gal_instance_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'DefinitionAudit.gal_smul_coe' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'DefinitionAudit.mem_span_singleton' depends on axioms: [propext, Quot.sound]
+  'DefinitionAudit.ofMulAction_single' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'DefinitionAudit.coeff_ofMulAction' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'DefinitionAudit.ne_bot_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'DefinitionAudit.mem_inf' depends on axioms: [propext, Quot.sound]
+  'DefinitionAudit.mem_bot' depends on axioms: [propext, Quot.sound]
+  (13 theorems; every one on a subset of [propext, Classical.choice, Quot.sound]: True)
+
+Statement identity, Challenge.lean vs Solution.lean: identical. The text compared is everything from
+`open MulAction` to the end of each file (opens, namespace, docstrings and statements), with the
+proofs removed (` := by` + `sorry` in Challenge, ` :=` + the one-line `BDS.` application in Solution).
+  normalized statement text sha256 7edd01946bf764b69a4d32f2c28efea56f7e08fb5c0357c33bbc7d0a4c73353f, 8223 chars,
+  identical in both files. The comparator below also verifies statement identity semantically: it
+  exports each compared name from both modules and checks the solution proves the same statement.
+
+Shared definitions, Challenge.lean vs BDS/Defs.lean: PASS: shared block identical in Challenge.lean
+and BDS/Defs.lean (54 lines, 2275 bytes, sha256 ff1b77100d7847a396d2511b277c8c0a8c9bec3338934f9e33e96954750e17fc;
+`zeroSum K Ω` and `relModule K α`, over a field `K`)
+
+Registry comparator, re-run 2026-10-29 on the files hashed below, locally from the package root
+(toolchain v4.35.0-rc2), `lake comparator --inadvisably-no-sandbox` (no bubblewrap on macOS), reading
+comparator.json:
+  Exporting the 8 compared names + [propext, Classical.choice, Quot.sound] + Quot primitives from
+  Challenge and from Solution; Running Lean default kernel on solution:
+    Lean default kernel accepts the solution / Your solution is okay!   exit 0   (~108 s)
+
+Proof map (Solution.lean, one application each):
+  DixonRelations.zeroSum_irreducible                  := BDS.zeroSum_irreducible
+  DixonRelations.additive_core_of_irreducible         := BDS.additive_core_of_irreducible
+  DixonRelations.additive_core                        := BDS.additive_core
+  DixonRelations.additive_roots_no_relation           := BDS.additive_roots_no_relation
+  DixonRelations.relModule_le_span_one_of_irreducible := BDS.relModule_le_span_one_of_irreducible
+  DixonRelations.relModule_le_span_one                := BDS.relModule_le_span_one
+  DixonRelations.relModule_roots_le_span_one          := BDS.relModule_roots_le_span_one
+  DixonRelations.roots_inhomogeneous_iff_const        := BDS.roots_inhomogeneous_iff_const
+  (in BDS, additive_core is additive_core_of_irreducible with hirr from zeroSum_irreducible, and
+  relModule_le_span_one is relModule_le_span_one_of_irreducible with hirr from zeroSum_irreducible
+  and transitivity from isPretransitive_of_is_two_pretransitive; relModule_roots_le_span_one is
+  relModule_le_span_one at the roots, by the instantiation used for additive_roots_no_relation, and
+  roots_inhomogeneous_iff_const has forward direction roots_inhomogeneous_const, which applies
+  additive_core at the roots to the difference of c and each Galois translate, and reverse
+  direction exists_sum_rootSet_eq_algebraMap, the sum of the roots of a separable polynomial lies
+  in the base field (BDS/RootsCorollaries.lean))
+
+FILES (sha256, lines; every tracked file except BUILD.txt and SHA256SUMS.txt; the gitignored staging
+files are not part of the entry and are not listed):
+  2b664c14ec9615afb8b10c7fb547e580d63cbdb831476904a26198fd9bdf6329     24  .github/workflows/palomar-preflight.yml
+  59759fcc7c9b9d5334bb5b799d525e8473b5e581b4a3c2ce1c64ed577e845e7a     12  .gitignore
+  91b93fc40d50d30e17c0d58cb6870c3aecb4543fc53f97574d50c5a2bc5aa3fd     40  BDS.lean
+  447369b8d71f978b0a661c8c2c111797dd275e25995e019c392de1686711297d    286  BDS/AdditiveRelations.lean
+  a159feb74dc35a9e38ae7fffbfb4201311b0ebd97ea0175658f63ef09dd8c6a0    104  BDS/AtomBridge.lean
+  f67c8d13799f8c8a23b5aa55a9e03089aeb0cd3763d239d7c66463f555ba6d99     67  BDS/Defs.lean
+  96729edd2a9587982dc96ab5cc5494e034930e3f97b72fdb2fb7f1c9f1fe3005    143  BDS/RootsCorollaries.lean
+  cb9f8ad1d4d0a2f34106603c5830347409fc6476c321f55b7f421b83a4d8d2e1    188  BDS/TwoTransitiveIrreducible.lean
+  88950bd9988cd088b9fd0d36f5ad1a6fd6ac201db06ac9113df3bc018ec94f70    496  Challenge.lean
+  8e24a3e532d103a637fbe3d562487adf3df2ed1bf18195e0dae9c06dd7431144    150  DefinitionAudit.lean
+  d32be532ae3b0129081943d5ba0140833d203720b69e21bc64c735160db351cb     21  LICENSE
+  97dd68c1ded51f17e712d1ebd5de35dd73e38d64e84b8b388fed0dc6d844df2c    684  MATHLIB_DEFINITIONS.md
+  bac6b9033a8c4e6f307c42f98ec7ef79508adf5fd640824e28c8d437e6a281c4    548  README.md
+  c4591fd126c5d82d76a11beced597f51d20488635e64bd3f760516b17b204395    163  Solution.lean
+  af5ad4203809c68a6c70ceb81746f31d0606f3e1c2e8b06a41d28b3718566d7b     19  comparator.json
+  622d8ca930ab7bbbd4afc686914d30814f9a3ea93d4ee0fe8024e5e3d0080370    815  formalization.yaml
+  f997944e79d5a726003ae61eeb423104b92b19c93b09c11bb96083e75a9116ab     96  lake-manifest.json
+  74a200b49dc5f943672dc0731e6f032df65d1d67134681043bb57c1f712922bd     20  lakefile.toml
+  8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a      1  lean-toolchain
